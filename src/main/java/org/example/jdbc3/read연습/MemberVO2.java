@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 
-public class MemberOneVO {
+public class MemberVO2 {
     private String id;
     private String pw;
     private String name;

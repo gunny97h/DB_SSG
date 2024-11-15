@@ -1,5 +1,7 @@
 package org.example.jdbc3.read연습;
 
+import org.example.jdbc2.member.MemberVO;
+
 import java.util.ArrayList;
 
 public class ListTest {
@@ -15,11 +17,11 @@ public class ListTest {
 
         System.out.println("-----------------------------------");
 
-        ArrayList<MemberOneVO> list2 = new ArrayList<>();
-        MemberOneVO vo1 = new MemberOneVO();
+        ArrayList<MemberVO2> list2 = new ArrayList<>();
+        MemberVO2 vo1 = new MemberVO2();
         vo1.setId("11");
         vo1.setPw("11");
-        MemberOneVO vo2 = new MemberOneVO();
+        MemberVO2 vo2 = new MemberVO2();
         vo2.setId("22");
         vo2.setPw("22");
 

@@ -2,16 +2,19 @@ package org.example.jdbc3.read연습;
 
 import org.example.jdbc2.member.MemberVO;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class MemberOneDAO {  // VO 사용
+public class MemberDAO2 {  // VO 사용
     // DAO 클래스는 member 테이블의 데이터를 접근해서
     // 여러 기능을 정의하고 있는 클래스를 말함.
     // DB 테이블당 DAO는 하나씩 만든다.
     // 테이블이 100개이면 DAO는 1000개를 만든다.
 
     Connection con;  // 전역변수가 됨. null로 자동초기화
-    public MemberOneDAO() throws Exception {
+    public MemberDAO2() throws Exception {
         // new MemberDAO() 할 때 클래스 이름과 동일한 메서드인 생성자 메서드가 자동호출됨. (1,2단계를 실행해줌)
 
         // 1. 드라이버 설정 --> 레이지로딩(실행시에 메모리에 올려줌)
@@ -26,7 +29,7 @@ public class MemberOneDAO {  // VO 사용
         System.out.println("2. DB 연결");
     }
 
-    public boolean login(MemberOneVO bag) throws Exception {
+    public boolean login(MemberVO2 bag) throws Exception {
         boolean result = false;  // 로그인 실패!
         String sql = "select * from member where id = ? and pw = ?";
         // 3. sql문 준비
@@ -45,7 +48,7 @@ public class MemberOneDAO {  // VO 사용
 
     // 기능은 메서드로 정의
     // row 하나 검색 --> 워크벤치에서 sql문을 먼저 테스트해보기
-    public MemberOneVO one(String id) throws Exception {
+    public MemberVO2 one(String id) throws Exception {
         // 1,2 단계는 DAO 객체 생성시 벌써 실행됨.
         // 3,4 단계만 구현하면 됨.
         // 3. sql문 객체로 준비
@@ -73,7 +76,7 @@ public class MemberOneDAO {  // VO 사용
 //          <-vo--- 영화종합정보사에서 가지고 올 때 json에 결과가 들어있음.
 
         //UI로 ResultSet에 있는 것 있으면 꺼내서 vo에 넣어서 전달하자!
-        MemberOneVO vo = new MemberOneVO();
+        MemberVO2 vo = new MemberVO2();
         if(table.next()){
             vo.setId(table.getString("id")); //컬럼명 선호!
             vo.setPw(table.getString(2)); //인덱스 사용 가능!
@@ -83,7 +86,7 @@ public class MemberOneDAO {  // VO 사용
         return vo;
     }
 
-    public void insert(MemberVO vo) throws Exception {
+    public void insert(MemberVO2 vo) throws Exception {
         // 3. SQL 준비
         String sql = "insert into member values(?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);  // ps가 ?를 세팅하는 역할

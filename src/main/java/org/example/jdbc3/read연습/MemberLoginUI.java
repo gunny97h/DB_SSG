@@ -1,5 +1,7 @@
 package org.example.jdbc3.read연습;
 
+import org.example.jdbc2.member.MemberDAO;
+
 import java.util.Scanner;
 
 /*
@@ -31,10 +33,10 @@ public class MemberLoginUI {
         String pw = sc.next();
         sc.close();
 
-        MemberOneDAO dao = new MemberOneDAO();
+        MemberDAO2 dao = new MemberDAO2();
         // vo 쓰는 기준!!!
         // 가방 만들고
-        MemberOneVO bag = new MemberOneVO();
+        MemberVO2 bag = new MemberVO2();
         // 값 넣고
         bag.setId(id);
         bag.setPw(pw);
