@@ -2,10 +2,7 @@ package org.example.jdbc3.read연습;
 
 import org.example.jdbc2.member.MemberVO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class MemberOneDAO {  // VO 사용
     // DAO 클래스는 member 테이블의 데이터를 접근해서
@@ -27,6 +24,23 @@ public class MemberOneDAO {  // VO 사용
         String password = "1234";
         con = DriverManager.getConnection(url, user, password);
         System.out.println("2. DB 연결");
+    }
+
+    public boolean login(MemberOneVO bag) throws Exception {
+        boolean result = false;  // 로그인 실패!
+        String sql = "select * from member where id = ? and pw = ?";
+        // 3. sql문 준비
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, bag.getId());
+        ps.setString(2, bag.getPw());
+        // 4. sql문 전송 --> 결과가 있으면 result = true;
+        ResultSet table = ps.executeQuery();
+        if (table.next()) {
+            result = true;
+        }
+        ps.close();
+        con.close();
+        return result;
     }
 
     // 기능은 메서드로 정의
