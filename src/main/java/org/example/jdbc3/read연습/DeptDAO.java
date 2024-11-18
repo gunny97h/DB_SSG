@@ -40,6 +40,9 @@ public class DeptDAO {
             bag.setDname(table.getString("dname"));
             bag.setLoc(table.getString(3));
         }
+        table.close();
+        ps.close();
+        con.close();
         return bag;  // 검색 결과를 담은 DeptVO 객체 반환
     }
 }
