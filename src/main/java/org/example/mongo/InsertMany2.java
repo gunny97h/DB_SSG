@@ -7,10 +7,11 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InsertManySC {
+public class InsertMany2 {
     public static void main(String[] args) {
         // log x
         Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );

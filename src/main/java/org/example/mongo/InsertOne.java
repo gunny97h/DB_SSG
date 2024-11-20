@@ -5,8 +5,15 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class InsertOne {
     public static void main(String[] args) {
+        // log x
+        Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
+        mongoLogger.setLevel(Level.WARNING);
+
         // 1. MongoClient 생성
         MongoClient client = new MongoClient("localhost", 27017);
 
