@@ -1,4 +1,4 @@
-package org.example.mongo;
+package org.example.mongo.delete;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -8,7 +8,7 @@ import org.bson.Document;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InsertOne {
+public class DeleteOne2 {
     public static void main(String[] args) {
         // log x
         Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
@@ -23,15 +23,13 @@ public class InsertOne {
         System.out.println("member 컬렉션까지 연결 성공~!");
 
         // 3. 전송할 js 생성
-        //    insert할 json(document)을 생성
-        Document doc = new Document();
-        doc.append("id", "apple"); // {id : "apple"}
-        doc.append("pw", "1234"); // {id : "apple", pw : "1234"}
-        doc.append("name", "apple"); // {id : "apple", pw : "1234", name : "apple"}
-        doc.append("tel", "011"); // {id : "apple", pw : "1234", name : "apple", tel : "011"}
+        //    delete할 json(document) 조건(filter)을 생성
+        Document filter = new Document();
+        filter.append("id", "apple20");
+        filter.append("pw", "1234");  // 조건 2개 (and)
 
         // 4. 전송, 결과처리
-        member.insertOne(doc);
+        member.deleteOne(filter);
         System.out.println("MongoDB로 전송함.");
 
         client.close();

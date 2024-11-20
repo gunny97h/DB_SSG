@@ -1,17 +1,14 @@
-package org.example.mongo;
+package org.example.mongo.delete;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class InsertMany2 {
+public class DeleteMany {
     public static void main(String[] args) {
         // log x
         Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
@@ -26,19 +23,13 @@ public class InsertMany2 {
         System.out.println("member 컬렉션까지 연결 성공~!");
 
         // 3. 전송할 js 생성
-        //    insert할 json(document)을 여러 개 생성
-        List<Document> list = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            Document doc = new Document();
-            doc.append("id", "apple2" + i);
-            doc.append("pw", "1234");
-            doc.append("name", "apple2" + i);
-            doc.append("tel", "011");
-            list.add(doc);
-        }
+        //    delete할 json(document) 조건(filter)을 생성
+        Document filter = new Document();
+        filter.append("pw", "1234");
 
         // 4. 전송, 결과처리
-        member.insertMany(list);
+        member.deleteMany(filter);  // 조건에 맞는 것 다 지우기
+        //member.deleteOne(filter);  // 하나만 지우기
         System.out.println("MongoDB로 전송함.");
 
         client.close();
