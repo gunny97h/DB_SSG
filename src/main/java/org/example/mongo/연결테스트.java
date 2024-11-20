@@ -31,5 +31,7 @@ public class 연결테스트 {
         System.out.println(result2.first().getString("pw"));
         System.out.println(result2.first().getString("name"));
         System.out.println(result2.first().getString("tel"));
+
+        mongoClient.close();
     }
 }
