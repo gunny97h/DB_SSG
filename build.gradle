@@ -14,6 +14,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation 'org.jsoup:jsoup:1.18.1' // 코끼리 모양을 돌려서 다운로드 및 확인
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
+
     implementation 'mysql:mysql-connector-java:8.0.33'
     // 버전은 사용 중인 MySQL 서버와 호환되는 최신 버전으로 설정합니다.
 
