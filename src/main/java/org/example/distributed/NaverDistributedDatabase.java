@@ -100,17 +100,19 @@ public class NaverDistributedDatabase {
         }
     }
 }
+
 /*
-#### 몽고DB + mySQL분산 환경 구축(카카오) ####
--- SSG_DB/강의자료/NEW02-MySQL-7(몽고DB+JAVA).pdf p.66
-CREATE DATABASE kakao;
- USE kakao;
- CREATE TABLE users (
+#### 몽고DB + mySQL분산 환경 구축(네이버) ####
+-- SSG_DB/강의자료/NEW02-MySQL-7(몽고DB+JAVA).pdf  p.51
+
+create database naver;
+
+use naver;
+
+CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    signup_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(100) NOT NULL
  );
  */
-
 
