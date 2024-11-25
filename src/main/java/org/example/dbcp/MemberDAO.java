@@ -1,7 +1,10 @@
 package org.example.dbcp;
 
+import org.example.jdbc4.one.DeptVO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class MemberDAO {  // VO 사용
     // DAO 클래스는 member 테이블의 데이터를 접근해서
@@ -79,5 +82,30 @@ public class MemberDAO {  // VO 사용
         // 5. 연결 종료
         dbcp.freeConnection(con, ps);
         System.out.println("5. 연결 종료");
+    }
+
+    public MemberVO one(String id) throws Exception {
+
+        con = dbcp.getConnection();
+
+        // SQL 쿼리를 작성하여 특정 부서 번호에 해당하는 부서 정보 검색
+        String sql = "select * from member where id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);  // SQL 쿼리를 준비하여 실행
+        ps.setString(1, id);  // 쿼리의 첫 번째 위치에 부서 번호 삽입
+
+        // 쿼리 실행 후 결과 집합(ResultSet)을 테이블 형태로 받음
+        ResultSet table = ps.executeQuery();
+
+        // 결과 집합에서 데이터를 읽어와 MemberVO 객체에 저장
+        MemberVO vo = new MemberVO();
+        if (table.next()) {  // 결과가 있는 경우, 각 열의 값을 객체에 설정
+            vo.setId(table.getString("id")); //컬럼명 선호!
+            vo.setPw(table.getString("pw")); //인덱스 사용 가능!
+            vo.setName(table.getString("name"));
+            vo.setTel(table.getString("tel"));
+        }
+
+        dbcp.freeConnection(con, ps, table);
+        return vo;  // 검색 결과를 담은 MemberVO 객체 반환
     }
 }
