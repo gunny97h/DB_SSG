@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
 
+// SSG_DB/강의자료/NEW02-MySQL-5(DBCP+트랜잭션).pdf  p.42
 public class HikariCPDataSource {
     private static HikariCPDataSource instance; // 싱글톤 인스턴스
     private final HikariDataSource dataSource;
